@@ -19,21 +19,21 @@ jobs:
     permissions:
       id-token: write # need this for OIDC
       contents: read
-    uses: dtduc-git/github-workflows-modules/.github/workflows/golang/test/unit_test.yml@master
+    uses: dtduc-git/github-workflows-modules/.github/workflows/unit_test.yml@master
     secrets: inherit
 
   gitleak:
     permissions:
       id-token: write # need this for OIDC
       contents: read
-    uses: dtduc-git/github-workflows-modules/.github/workflows/common/others/gitleak.yml@master
+    uses: dtduc-git/github-workflows-modules/.github/workflows/gitleak.yml@master
     secrets: inherit
 
   harden-runner:
     permissions:
       id-token: write # need this for OIDC
       contents: read
-    uses: dtduc-git/github-workflows-modules/.github/workflows/common/others/harden-runner.yml@master
+    uses: dtduc-git/github-workflows-modules/.github/workflows/harden-runner.yml@master
     secrets: inherit
 
   build-and-test:
@@ -41,7 +41,7 @@ jobs:
     permissions:
       id-token: write # need this for OIDC
       contents: read
-    uses: dtduc-git/github-workflows-modules/.github/workflows/golang/build/golang.yaml@master
+    uses: dtduc-git/github-workflows-modules/.github/workflows/golang.yml@master
     with:
       env: ${{ github.event.inputs.environment }}
     secrets: inherit
