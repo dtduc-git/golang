@@ -14,6 +14,28 @@ on:
         default: 'dev'
 
 jobs:
+  test:
+    steps:
+      # - name: Decode base64 secrets
+      #   uses: actions/checkout@d0651293c4a5a52e711f25b41b05b2212f385d28
+      #   env:
+      #     JFROG_URL: ${{ secrets.JFROG_URL }}
+      #     GOLANG_REPOSITORY: ${{ secrets.GOLANG_REPOSITORY }}
+      #     GOLANG_IMAGE: ${{ secrets.GOLANG_IMAGE }}
+      #     GOLANG_TAG: ${{ secrets.GOLANG_TAG }}
+      #   run: |
+      #     echo $JFROG_URL | base64 -d > lib/path/to/secrets.dart
+      #     echo $GOLANG_REPOSITORY | base64 -d > lib/path/to/secrets.dart
+      #     echo $GOLANG_IMAGE | base64 -d > lib/path/to/secrets.dart
+      #     echo $GOLANG_TAG | base64 -d > lib/path/to/secrets.dart
+
+      - name: Set environment variables
+        shell: bash
+        env:
+          JFROG_URL: ${{ secrets.JFROG_URL }}
+        run: |
+          echo $JFROG_URL | base64 -d
+
   unit-test:
     permissions:
       id-token: write # need this for OIDC
