@@ -8,7 +8,7 @@ RUN go mod download
 
 # Build
 COPY . ./
-RUN CGO_ENABLED=0 go build
+RUN CGO_ENABLED=0 GOOS=linux go build -o ./.bin/app ./cmd/api/main.go
 
 # Create final image
 FROM alpine:latest
