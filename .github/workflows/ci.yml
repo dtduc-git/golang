@@ -1,0 +1,47 @@
+# This CI workflow can be triggered by PR creation or code push in PR, or manually using workflow dispatch.
+
+name: CI workflow for building, testing microservice, and publishing image to ECR
+
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run the workflow against'
+        type: environment
+        required: false
+        default: 'dev'
+
+jobs:
+  unit-test:
+    permissions:
+      id-token: write # need this for OIDC
+      contents: read
+    uses: dtduc-git/github-workflows-modules/.github/workflows/golang/test/unit_test.yml@master
+    secrets: inherit
+
+  gitleak:
+    permissions:
+      id-token: write # need this for OIDC
+      contents: read
+    uses: dtduc-git/github-workflows-modules/.github/workflows/common/others/gitleak.yml@master
+    secrets: inherit
+
+  harden-runner:
+    permissions:
+      id-token: write # need this for OIDC
+      contents: read
+    uses: dtduc-git/github-workflows-modules/.github/workflows/common/others/harden-runner.yml@master
+    secrets: inherit
+
+  build-and-test:
+    needs: [unit-test, gitleak, harden-runner]
+    permissions:
+      id-token: write # need this for OIDC
+      contents: read
+    uses: dtduc-git/github-workflows-modules/.github/workflows/golang/build/golang.yaml@master
+    with:
+      env: ${{ github.event.inputs.environment }}
+    secrets: inherit
