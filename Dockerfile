@@ -13,7 +13,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o ./.bin/app ./cmd/api/main.go
 # Create final image
 FROM alpine:latest
 WORKDIR /root/
-COPY --from=builder ./.bin/app .
-COPY --from=builder ./config/ .
+COPY --from=builder /build/.bin/app .
+COPY --from=builder /build/config/ .
 EXPOSE 8080
 CMD ["./myapp"]
