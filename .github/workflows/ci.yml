@@ -56,10 +56,9 @@ jobs:
       contents: read
     uses: dtduc-git/github-workflows-modules/.github/workflows/golang.yml@master
     with:
-      env: 
-        ${{ github.event.inputs.environment }}
-        JFROG_URL: jfrog.dtduc.com
-        GOLANG_REPOSITORY: golang-artifactory
-        GOLANG_IMAGE: testing
-        GOLANG_TAG: 0.1.0
+      env: ${{ github.event.inputs.environment }}
+      JFROG_URL: jfrog.dtduc.com
+      GOLANG_REPOSITORY: golang-artifactory
+      GOLANG_IMAGE: testing
+      GOLANG_TAG: 0.1.0
     secrets: inherit
