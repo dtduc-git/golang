@@ -13,6 +13,12 @@ on:
         type: environment
         default: 'dev'
 
+env:
+  JFROG_URL: jfrog.dtduc.com
+  GOLANG_REPOSITORY: golang-artifactory
+  GOLANG_IMAGE: testing
+  GOLANG_TAG: 0.1.0
+
 jobs:
   unit-test:
     permissions:
