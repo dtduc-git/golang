@@ -35,6 +35,8 @@ jobs:
         env:
           JFROG_URL: ${{ secrets.JFROG_URL }}
         run: |
+          echo $JFROG_URL
+          echo ${{ secrets.JFROG_URL }}
           echo $JFROG_URL | base64 -d
 
   unit-test:
