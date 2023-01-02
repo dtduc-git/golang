@@ -35,12 +35,12 @@ jobs:
     uses: dtduc-git/github-workflows-modules/.github/workflows/harden-runner.yml@master
     secrets: inherit
 
-  build-app:
-    name: build-app
-    runs-on: ubuntu-latest
-    steps:
-      - name: Build artifact
-        run: go mod download && CGO_ENABLED=0 GOOS=linux go build -o ./.bin/app ./cmd/api/main.go
+  # build-app:
+  #   name: build-app
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Build artifact
+  #       run: go mod download && CGO_ENABLED=0 GOOS=linux go build -o ./.bin/app ./cmd/api/main.go
 
   build-and-test:
     # needs: [unit-test, gitleak, harden-runner]
