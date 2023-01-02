@@ -11,7 +11,6 @@ on:
       environment:
         description: 'Environment to run the workflow against'
         type: environment
-        required: false
         default: 'dev'
 
 jobs:
