@@ -15,5 +15,3 @@ FROM alpine:latest
 WORKDIR /root/
 COPY --from=builder /build/.bin/app .
 COPY --from=builder /build/config/ .
-EXPOSE 8080
-CMD ["./myapp"]
