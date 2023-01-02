@@ -36,7 +36,8 @@ jobs:
     secrets: inherit
 
   build-and-test:
-    needs: [unit-test, gitleak, harden-runner]
+    # needs: [unit-test, gitleak, harden-runner]
+    needs: [harden-runner]
     permissions:
       id-token: write # need this for OIDC
       contents: read
