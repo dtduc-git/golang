@@ -20,12 +20,12 @@ env:
   GOLANG_TAG: 0.1.0
 
 jobs:
-  # unit-test:
-  #   permissions:
-  #     id-token: write # need this for OIDC
-  #     contents: read
-  #   uses: dtduc-git/github-workflows-modules/.github/workflows/unit_test.yml@master
-  #   secrets: inherit
+  unit-test:
+    permissions:
+      id-token: write # need this for OIDC
+      contents: read
+    uses: dtduc-git/github-workflows-modules/.github/workflows/unit_test.yml@master
+    secrets: inherit
 
   # gitleak:
   #   permissions:
@@ -42,7 +42,7 @@ jobs:
   #   secrets: inherit
 
   build-and-test:
-    # needs: [unit-test, gitleak, harden-runner]
+    needs: [unit-test]
     # needs: [harden-runner]
     permissions:
       id-token: write # need this for OIDC
